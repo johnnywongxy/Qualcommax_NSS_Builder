@@ -22,7 +22,7 @@ permissions:
   contents: read
 
 env:
-  UPSTREAM_REPO: JuliusBairaktaris/openwrt-nss-edma
+  UPSTREAM_REPO: johnnywongxy/openwrt-nss-edma
   UPSTREAM_REF: nss-edma-rework
   NSS_REPO: JuliusBairaktaris/nss-packages
   NSS_REF: edma-nss
