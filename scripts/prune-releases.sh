@@ -6,6 +6,8 @@
 #   KEEP         positive integer (number of newest releases to retain)
 #
 # Optional env:
+#   PREFIX       only consider tags <prefix>-<timestamp>-<run id>; empty = every release.
+#                Anchored on the timestamp so `edma-nss` does not also match `edma-nss-mesh`.
 #   CURRENT_TAG  tag just published; never deleted even if it falls outside the keep window
 #   DRY_RUN      "1" prints what would be deleted and exits 0
 #   GH_TOKEN     forwarded to gh CLI (set by GitHub Actions automatically)
@@ -22,6 +24,7 @@ source "$(dirname -- "$0")/lib/log.sh"
 : "${REPO:?REPO env var required (owner/name)}"
 : "${KEEP:?KEEP env var required (positive integer)}"
 
+PREFIX="${PREFIX:-}"
 CURRENT_TAG="${CURRENT_TAG:-}"
 DRY_RUN="${DRY_RUN:-0}"
 RELEASES_JSON_STDIN="${RELEASES_JSON_STDIN:-0}"
@@ -40,6 +43,11 @@ else
     --json tagName,publishedAt)"
 fi
 
+if [[ -n "$PREFIX" ]]; then
+  releases_json="$(jq --arg p "$PREFIX" \
+    '[.[] | select(.tagName | test("^\($p)-[0-9]{8}T[0-9]{6}Z-"))]' <<<"$releases_json")"
+fi
+
 # Sort newest-first by publishedAt, drop the newest $KEEP, defensively exclude $CURRENT_TAG.
 mapfile -t to_delete < <(
   jq -r \
@@ -50,7 +58,7 @@ mapfile -t to_delete < <(
 )
 
 total="$(jq 'length' <<<"$releases_json")"
-log::info "Found $total non-draft release(s); keeping newest $KEEP."
+log::info "Found $total non-draft release(s)${PREFIX:+ under $PREFIX}; keeping newest $KEEP."
 
 if [[ ${#to_delete[@]} -eq 0 ]]; then
   log::info "Nothing to prune."
@@ -64,6 +72,10 @@ if [[ "$DRY_RUN" == "1" ]]; then
   log::info "DRY_RUN=1; no deletions performed."
   exit 0
 fi
+
+# Deleting a release drops its download counts; fold them into the lifetime
+# total first, and never delete unaccounted.
+bash "$(dirname -- "$0")/download-stats.sh" "${to_delete[@]}"
 
 failed=0
 for tag in "${to_delete[@]}"; do
