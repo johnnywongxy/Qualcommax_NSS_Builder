@@ -48,9 +48,17 @@ CONFIG_PACKAGE_coremark=y
 CONFIG_LUCI_LANG_zh_Hans=y
 
 ## ddnsto + KMS GUI (2026-10-02): luci-app-ddnsto (Lua UI, needs luci-compat)
-## plus its ddnsto service package from the nas feed; the vlmcsd KMS LuCI
-## app is vendored into the openwrt fork (package/luci-app-vlmcsd).
+## plus its ddnsto service package from the nas feed.
+## KMS app + daemon are vendored from kenzok8/small-package; cpufreq from
+## ivanxxxx/luci-app-cpufreq; ttyd from the official feeds.
 CONFIG_PACKAGE_luci-app-ddnsto=y
 CONFIG_PACKAGE_ddnsto=y
 CONFIG_PACKAGE_luci-app-vlmcsd=y
 CONFIG_PACKAGE_luci-compat=y
+
+## cpufreq + ttyd (2026-10-02): CPU frequency control (vendored, defaults to
+## schedutil because the kernel ships no ondemand governor) and the web
+## terminal (ttyd + luci-app-ttyd from the official feeds).
+CONFIG_PACKAGE_luci-app-cpufreq=y
+CONFIG_PACKAGE_luci-app-ttyd=y
+CONFIG_PACKAGE_ttyd=y
