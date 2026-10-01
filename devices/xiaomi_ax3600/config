@@ -1,16 +1,15 @@
 #
-# Xiaomi AX3600 (IPQ8071A, 512 MB) — the reference build.
+# Xiaomi AX3600 (IPQ8071A) with the 1 GB RAM mod — the reference build.
 #
 # Concatenated onto devices/common/config by prepare-build.sh.
 #
 
 CONFIG_TARGET_qualcommax_ipq807x_DEVICE_xiaomi_ax3600=y
 
-# 512 MB board: the ath11k profile is also forced by kmod-ath11k's NSS block,
-# and the NSS MEDIUM profile replaces the ipq807x default (HIGH), which does
-# not fit here.
-CONFIG_ATH11K_MEM_PROFILE_512M=y
-CONFIG_NSS_MEM_PROFILE_MEDIUM=y
+# 1 GB board (RAM mod): the ath11k profile is also forced by kmod-ath11k's
+# NSS block, and the HIGH NSS profile is the ipq807x default, which now fits.
+CONFIG_ATH11K_MEM_PROFILE_1G=y
+CONFIG_NSS_MEM_PROFILE_HIGH=y
 
 CONFIG_ATH10K-CT_LEDS=n
 CONFIG_PACKAGE_ath10k-board-qca9887=n
