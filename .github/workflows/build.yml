@@ -18,7 +18,9 @@ on:
     - cron: "0 */2 * * *"
 
 concurrency:
-  group: build-${{ github.ref }}
+  # Unique per run: a cancelled-while-queued run can keep its concurrency
+  # group locked forever on GitHub, starving every later build behind it.
+  group: build-${{ github.ref }}-${{ github.run_id }}
   cancel-in-progress: false
 
 permissions:
