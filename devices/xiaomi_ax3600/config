@@ -24,3 +24,16 @@ CONFIG_PACKAGE_kmod-usb-dwc3=n
 CONFIG_PACKAGE_kmod-usb-dwc3-qcom=n
 CONFIG_PACKAGE_kmod-usb-xhci-hcd=n
 CONFIG_PACKAGE_kmod-usb3=n
+
+## User extras (2026-10-01): proxy, KMS, UPnP, Lucky, Proton2025 theme.
+## The theme is vendored into the openwrt fork (package/luci-theme-proton2025)
+## because its repo root is the package itself, which a feed cannot scan;
+## the other three come from the feeds added in .github/workflows/build.yml.
+CONFIG_PACKAGE_luci-theme-proton2025=y
+CONFIG_PACKAGE_luci-app-passwall=y
+CONFIG_PACKAGE_luci-i18n-passwall-zh-cn=y
+CONFIG_PACKAGE_luci-app-lucky=y
+CONFIG_PACKAGE_luci-app-upnp=y
+CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=y
+CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
+CONFIG_PACKAGE_vlmcsd=y

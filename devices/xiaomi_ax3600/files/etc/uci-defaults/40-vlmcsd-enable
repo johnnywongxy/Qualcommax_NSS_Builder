@@ -1,0 +1,7 @@
+#!/bin/sh
+# KMS emulator on by default (LAN-facing, tcp/1688).
+if [ -f /etc/config/vlmcsd ]; then
+	uci -q set vlmcsd.config.enabled='1'
+	uci -q commit vlmcsd
+fi
+exit 0

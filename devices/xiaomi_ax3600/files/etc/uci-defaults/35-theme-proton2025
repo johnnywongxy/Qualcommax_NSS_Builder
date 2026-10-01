@@ -1,0 +1,6 @@
+#!/bin/sh
+# Proton2025 is the default LuCI theme for this image. Only affects first
+# boot: a mediaurlbase saved in an upgraded config keeps winning.
+uci -q set luci.main.mediaurlbase='/luci-static/proton2025'
+uci -q commit luci
+exit 0
