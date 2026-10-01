@@ -34,6 +34,14 @@ CONFIG_PACKAGE_luci-app-passwall=y
 CONFIG_PACKAGE_luci-app-lucky=y
 CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_vlmcsd=y
+
+## Tools (2026-10-01): scp binary (ships as /usr/libexec/scp-openssh with an
+## /usr/bin/scp alternative; the sftp-server is already in common), NAND
+## rw access for partition surgery, and the usual benchmark set.
+CONFIG_PACKAGE_openssh-client=y
+CONFIG_PACKAGE_kmod-mtd-rw=y
+CONFIG_PACKAGE_iperf3=y
+CONFIG_PACKAGE_coremark=y
 # luci master enables language packs through the collection switch rather
 # than per-package CONFIG_PACKAGE_luci-i18n-* selects (those get normalised
 # away by defconfig); one line covers base + every app's zh-cn pack.
