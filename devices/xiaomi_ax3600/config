@@ -62,3 +62,8 @@ CONFIG_PACKAGE_luci-compat=y
 CONFIG_PACKAGE_luci-app-cpufreq=y
 CONFIG_PACKAGE_luci-app-ttyd=y
 CONFIG_PACKAGE_ttyd=y
+
+## coremark: enable multithreading so the score covers all four cores
+## (default is single-threaded; threads default 2 when enabled).
+CONFIG_COREMARK_ENABLE_MULTITHREADING=y
+CONFIG_COREMARK_NUMBER_OF_THREADS=4
