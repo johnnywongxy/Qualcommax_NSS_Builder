@@ -41,6 +41,7 @@ env:
     src-git passwall https://github.com/Openwrt-Passwall/openwrt-passwall.git;main
     src-git lucky https://github.com/whzhni1/luci-app-lucky.git;main
     src-git nasluci https://github.com/linkease/nas-packages-luci.git;main
+    src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main
 
 jobs:
   check:
