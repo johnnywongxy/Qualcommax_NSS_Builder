@@ -37,6 +37,7 @@ env:
   MESH_RELEASE_PREFIX: edma-nss-mesh
   KEEP: "2"                     # newest releases to retain, per prefix
   FEEDS: |
+    src-git luci https://git.openwrt.org/project/luci.git
     src-git nss https://github.com/johnnywongxy/nss-packages.git;edma-nss
     src-git passwall https://github.com/Openwrt-Passwall/openwrt-passwall.git;main
     src-git lucky https://github.com/whzhni1/luci-app-lucky.git;main
