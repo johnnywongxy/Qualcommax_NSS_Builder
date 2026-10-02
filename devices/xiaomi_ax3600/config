@@ -63,3 +63,6 @@ CONFIG_PACKAGE_ttyd=y
 ## (default is single-threaded; threads default 2 when enabled).
 CONFIG_COREMARK_ENABLE_MULTITHREADING=y
 CONFIG_COREMARK_NUMBER_OF_THREADS=4
+
+## KMS emulator (vendored in the ax3600-complete source branch).
+CONFIG_PACKAGE_vlmcsd=y
