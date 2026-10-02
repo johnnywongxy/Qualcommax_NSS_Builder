@@ -66,3 +66,9 @@ CONFIG_COREMARK_NUMBER_OF_THREADS=4
 
 ## KMS emulator (vendored in the ax3600-complete source branch).
 CONFIG_PACKAGE_vlmcsd=y
+## Proton2025 theme (vendored on the ax3600-complete source branch).
+CONFIG_PACKAGE_luci-theme-proton2025=y
+
+## Initramfs image for the one-time migration into the upstream
+## partition layout (boot it from the bootloader, then sysupgrade).
+CONFIG_TARGET_ROOTFS_INITRAMFS=y
